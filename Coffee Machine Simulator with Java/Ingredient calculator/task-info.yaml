@@ -115,8 +115,8 @@ files:
       }
     learner_created: false
 feedback_link: https://hyperskill.org/projects/33/stages/176/implement#comment
-status: Solved
+status: Failed
 feedback:
-  message: Congratulations!
-  time: "Thu, 28 Dec 2023 15:54:47 UTC"
-record: -1
+  message: Execution failed
+  time: "Thu, 28 Dec 2023 17:48:12 UTC"
+record: 2
