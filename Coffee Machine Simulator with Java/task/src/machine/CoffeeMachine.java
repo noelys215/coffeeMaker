@@ -2,6 +2,8 @@ package machine;
 
 import java.util.Scanner;
 
+enum action {buy, fill, take}
+
 public class CoffeeMachine {
     public static void main(String[] args) {
      /*   String[] options = {
@@ -17,7 +19,8 @@ public class CoffeeMachine {
         for (var option : options) System.out.println(option);
       */
 //        makeCoffee();
-        checkInventory();
+//        checkInventory();
+        coffeeMaker();
 
     }
 
@@ -76,4 +79,108 @@ public class CoffeeMachine {
         }
         scanner.close();
     }
+
+    public static void coffeeMaker() {
+        Scanner scanner = new Scanner(System.in);
+        int water = 400;
+        int milk = 540;
+        int beans = 120;
+        int cups = 9;
+        int cash = 550;
+
+        System.out.println("""
+                The coffee machine has:
+                400 ml of water
+                540 ml of milk
+                120 g of coffee beans
+                9 disposable cups
+                $550 of money
+                """);
+        System.out.println("Write action (buy, fill, take): ");
+        var action = scanner.nextLine();
+
+        switch (action) {
+            case "buy" -> {
+                System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ");
+                var option = scanner.nextInt();
+                switch (option) {
+                    case 1 -> System.out.printf("""
+                                                        
+                            The coffee machine has:
+                            %s ml of water
+                            %s ml of milk
+                            %s g of coffee beans
+                            %s disposable cups
+                            $%s of money""", water - 250, milk, beans - 16, cups - 1, cash + 4);
+                    case 2 -> System.out.printf("""
+                                                        
+                            The coffee machine has:
+                            %s ml of water
+                            %s ml of milk
+                            %s g of coffee beans
+                            %s disposable cups
+                            $%s of money""", water - 350, milk - 75, beans - 20, cups - 1, cash + 7);
+                    case 3 -> System.out.printf("""
+                                                        
+                            The coffee machine has:
+                            %s ml of water
+                            %s ml of milk
+                            %s g of coffee beans
+                            %s disposable cups
+                            $%s of money""", water - 200, milk - 100, beans - 12, cups - 1, cash + 6);
+                    default -> System.out.println("Invalid Choice");
+                }
+            }
+            case "fill" -> {
+                System.out.println("Write how many ml of water you want to add: ");
+                int updatedWater = water + scanner.nextInt();
+                System.out.println("Write how many ml of milk you want to add: ");
+                int updatedMilk = milk + scanner.nextInt();
+                System.out.println("Write how many grams of coffee beans you want to add: ");
+                int updatedBeans = beans + scanner.nextInt();
+                System.out.println("Write how many disposable cups you want to add: ");
+                int updatedCups = cups + scanner.nextInt();
+                System.out.printf("""
+                                                
+                        The coffee machine has:
+                        %s ml of water
+                        %s ml of milk
+                        %s g of coffee beans
+                        %s disposable cups
+                        $%s of money""", updatedWater, updatedMilk, updatedBeans, updatedCups, cash);
+            }
+            case "take" -> {
+                System.out.printf("I gave you $%s\n\n", cash);
+                System.out.printf("""
+                        The coffee machine has:
+                        400 ml of water
+                        540 ml of milk
+                        120 g of coffee beans
+                        9 disposable cups
+                        $%s of money""", 0);
+            }
+            default -> System.out.println("Invalid Choice");
+        }
+
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
