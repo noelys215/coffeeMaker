@@ -84,69 +84,91 @@ public class CoffeeMachine {
 
     public static void coffeeMaker() {
         Scanner scanner = new Scanner(System.in);
-        printStatus();
-        System.out.println("Write action (buy, fill, take): ");
-        String action = scanner.nextLine();
-
-        switch (action) {
-            case "buy" -> handleBuy(scanner);
-            case "fill" -> handleFill(scanner);
-            case "take" -> handleTake();
-            default -> System.out.println("Invalid Choice");
+        while (true) {
+            System.out.println("Write action (buy, fill, take, remaining, exit): ");
+            String action = scanner.nextLine();
+            switch (action) {
+                case "buy" -> handleBuy(scanner);
+                case "fill" -> handleFill(scanner);
+                case "take" -> handleTake();
+                case "remaining" -> printStatus();
+                case "exit" -> System.exit(0);
+                default -> System.out.println("Invalid Choice");
+            }
         }
     }
 
     private static void handleBuy(Scanner scanner) {
-        System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ");
-        int option = scanner.nextInt();
-        switch (option) {
+        System.out.println("\nWhat do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu: ");
+        String option = scanner.next();
+        scanner.nextLine(); // Consume the rest of the line including newline
+
+        if ("back".equals(option)) {
+            return; // Go back to the main menu
+        }
+        int choice = Integer.parseInt(option);
+        switch (choice) {
             case 1 -> makeCoffee(250, 0, 16, 4);
             case 2 -> makeCoffee(350, 75, 20, 7);
             case 3 -> makeCoffee(200, 100, 12, 6);
             default -> System.out.println("Invalid Choice");
         }
-        printStatus();
     }
 
     private static void makeCoffee(int waterCost, int milkCost, int beansCost, int cashGain) {
-        if (water >= waterCost && milk >= milkCost && beans >= beansCost && cups > 0) {
+        // Check for each resource individually
+        if (water < waterCost) {
+            System.out.println("\nSorry, not enough water!\n");
+        } else if (milk < milkCost) {
+            System.out.println("\nSorry, not enough milk!\n");
+        } else if (beans < beansCost) {
+            System.out.println("\nSorry, not enough coffee beans!\n");
+        } else if (cups < 1) {
+            System.out.println("\nSorry, not enough disposable cups!\n");
+        } else {
+            // If all resources are sufficient, make the coffee
+            System.out.println("I have enough resources, making you a coffee!\n");
             water -= waterCost;
             milk -= milkCost;
             beans -= beansCost;
             cash += cashGain;
             cups--;
-        } else System.out.println("Not enough resources to make coffee!");
-
+        }
     }
 
     private static void handleFill(Scanner scanner) {
         System.out.println("Write how many ml of water you want to add: ");
         water += scanner.nextInt();
+        scanner.nextLine(); // Consume the rest of the line including newline
+
         System.out.println("Write how many ml of milk you want to add: ");
         milk += scanner.nextInt();
+        scanner.nextLine(); // Consume the rest of the line including newline
+
         System.out.println("Write how many grams of coffee beans you want to add: ");
         beans += scanner.nextInt();
+        scanner.nextLine(); // Consume the rest of the line including newline
+
         System.out.println("Write how many disposable cups you want to add: ");
         cups += scanner.nextInt();
-        printStatus();
+        scanner.nextLine(); // Consume the rest of the line including newline
     }
 
     private static void handleTake() {
         System.out.printf("I gave you $%d\n\n", cash);
         cash = 0;
-        printStatus();
     }
 
     private static void printStatus() {
         System.out.printf("""
-                
+                                
                 The coffee machine has:
                 %d ml of water
                 %d ml of milk
                 %d g of coffee beans
                 %d disposable cups
                 $%d of money
-                
+                                
                 """, water, milk, beans, cups, cash);
     }
 }
