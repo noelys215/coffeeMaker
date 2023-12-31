@@ -12,6 +12,18 @@ public class Main {
 
         // pass it into process method
         process(account);
+
+        Hotel h1 = new Hotel();
+        Hotel h2 = new Hotel();
+        Hotel h3 = h2;
+
+        h2.rating = 9;
+        h3.rating = 8;
+        h1.rating = 7;
+
+        System.out.println(h1.rating);
+        System.out.println(h2.rating);
+        System.out.println(h3.rating);
     }
 
     static class Account {
@@ -82,4 +94,10 @@ public class Main {
             System.out.println("Something wrong...");
         }
     }
+}
+
+class Hotel {
+    String name;
+    String address;
+    int rating;
 }
