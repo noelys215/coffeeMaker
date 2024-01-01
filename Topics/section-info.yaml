@@ -2,3 +2,4 @@ content:
   - Defining classes
   - Instance methods
   - Initializing new instances. Constructor
+  - Static members

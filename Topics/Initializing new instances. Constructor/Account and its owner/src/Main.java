@@ -1,103 +1,26 @@
+import java.util.Date;
 import java.util.Optional;
 
 public class Main {
 
 
     public static void main(String[] args) {
-
-        // create an instance of Account here
-        User user = new User("demo-user", "Alexander", "Schmidt");
-        Account account = new Account("123456", 1000, user);
+        System.out.println(Physics.ELECTRON_MASS); // 9.1093837E-31
+        System.out.println(Physics.SPEED_OF_LIGHT); // 299792458
 
 
-        // pass it into process method
-        process(account);
-
-        Hotel h1 = new Hotel();
-        Hotel h2 = new Hotel();
-        Hotel h3 = h2;
-
-        h2.rating = 9;
-        h3.rating = 8;
-        h1.rating = 7;
-
-        System.out.println(h1.rating);
-        System.out.println(h2.rating);
-        System.out.println(h3.rating);
-    }
-
-    static class Account {
-
-        private String code;
-        private long balance;
-        private User owner;
-
-        public Account(String code, long balance, User owner) {
-            this.code = code;
-            this.balance = balance;
-            this.owner = owner;
-        }
-
-        public String getCode() {
-            return code;
-        }
-
-        public long getBalance() {
-            return balance;
-        }
-
-        public User getOwner() {
-            return owner;
-        }
-    }
-
-    static class User {
-
-        private String login;
-        private String firstName;
-        private String lastName;
-
-        public User(String login, String firstName, String lastName) {
-            this.login = login;
-            this.firstName = firstName;
-            this.lastName = lastName;
-        }
-
-        public String getLogin() {
-            return login;
-        }
-
-        public String getFirstName() {
-            return firstName;
-        }
-
-        public String getLastName() {
-            return lastName;
-        }
-    }
-
-
-    public static void process(Account account) {
-        try {
-            final Optional<User> owner = Optional.ofNullable(account.getOwner());
-
-            System.out.println(account.getCode());
-            System.out.println(account.getBalance());
-
-            owner.ifPresent(o -> {
-                System.out.println(o.getLogin());
-                System.out.println(o.getFirstName());
-                System.out.println(o.getLastName());
-            });
-
-        } catch (Exception e) {
-            System.out.println("Something wrong...");
-        }
     }
 }
 
-class Hotel {
-    String name;
-    String address;
-    int rating;
+class Physics {
+
+    /**
+     * The speed of light in a vacuum (m/s)
+     */
+    public static final long SPEED_OF_LIGHT = 299_792_458;
+
+    /**
+     * Electron mass (kg)
+     */
+    public static final double ELECTRON_MASS = 9.1093837e-31;
 }
