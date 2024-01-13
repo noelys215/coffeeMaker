@@ -3,3 +3,4 @@ content:
   - Instance methods
   - Initializing new instances. Constructor
   - Static members
+  - Iterating over arrays

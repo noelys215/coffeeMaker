@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -34,6 +35,10 @@
             <option value="$PROJECT_DIR$/Topics/Instance methods/In a box" />
             <option value="$PROJECT_DIR$/Topics/Instance methods/Instance method and its class" />
             <option value="$PROJECT_DIR$/Topics/Instance methods/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Iterating over arrays/Find the sum" />
+            <option value="$PROJECT_DIR$/Topics/Iterating over arrays/Select one loop" />
+            <option value="$PROJECT_DIR$/Topics/Iterating over arrays/The index of the first max in an array" />
+            <option value="$PROJECT_DIR$/Topics/Iterating over arrays/Theory" />
             <option value="$PROJECT_DIR$/Topics/Static members/Project constants and methods" />
             <option value="$PROJECT_DIR$/Topics/Static members/Theory" />
             <option value="$PROJECT_DIR$/Topics/Static members/Time constants" />

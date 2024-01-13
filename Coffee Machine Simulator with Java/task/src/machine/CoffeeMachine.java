@@ -2,14 +2,7 @@ package machine;
 
 import java.util.Scanner;
 
-
 public class CoffeeMachine {
-    static int water = 400;
-    static int milk = 540;
-    static int beans = 120;
-    static int cups = 9;
-    static int cash = 550;
-
     public static void main(String[] args) {
      /*   String[] options = {
                 "Starting to make a coffee",
@@ -23,7 +16,9 @@ public class CoffeeMachine {
 
         for (var option : options) System.out.println(option);
       */
-        coffeeMaker();
+//        makeCoffee();
+        checkInventory();
+
     }
 
     public static void makeCoffee() {
@@ -81,113 +76,4 @@ public class CoffeeMachine {
         }
         scanner.close();
     }
-
-    public static void coffeeMaker() {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            System.out.println("Write action (buy, fill, take, remaining, exit): ");
-            String action = scanner.nextLine();
-            switch (action) {
-                case "buy" -> handleBuy(scanner);
-                case "fill" -> handleFill(scanner);
-                case "take" -> handleTake();
-                case "remaining" -> printStatus();
-                case "exit" -> System.exit(0);
-                default -> System.out.println("Invalid Choice");
-            }
-        }
-    }
-
-    private static void handleBuy(Scanner scanner) {
-        System.out.println("\nWhat do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu: ");
-        String option = scanner.next();
-        scanner.nextLine(); // Consume the rest of the line including newline
-
-        if ("back".equals(option)) {
-            return; // Go back to the main menu
-        }
-        int choice = Integer.parseInt(option);
-        switch (choice) {
-            case 1 -> makeCoffee(250, 0, 16, 4);
-            case 2 -> makeCoffee(350, 75, 20, 7);
-            case 3 -> makeCoffee(200, 100, 12, 6);
-            default -> System.out.println("Invalid Choice");
-        }
-    }
-
-    private static void makeCoffee(int waterCost, int milkCost, int beansCost, int cashGain) {
-        // Check for each resource individually
-        if (water < waterCost) {
-            System.out.println("\nSorry, not enough water!\n");
-        } else if (milk < milkCost) {
-            System.out.println("\nSorry, not enough milk!\n");
-        } else if (beans < beansCost) {
-            System.out.println("\nSorry, not enough coffee beans!\n");
-        } else if (cups < 1) {
-            System.out.println("\nSorry, not enough disposable cups!\n");
-        } else {
-            // If all resources are sufficient, make the coffee
-            System.out.println("I have enough resources, making you a coffee!\n");
-            water -= waterCost;
-            milk -= milkCost;
-            beans -= beansCost;
-            cash += cashGain;
-            cups--;
-        }
-    }
-
-    private static void handleFill(Scanner scanner) {
-        System.out.println("Write how many ml of water you want to add: ");
-        water += scanner.nextInt();
-        scanner.nextLine(); // Consume the rest of the line including newline
-
-        System.out.println("Write how many ml of milk you want to add: ");
-        milk += scanner.nextInt();
-        scanner.nextLine(); // Consume the rest of the line including newline
-
-        System.out.println("Write how many grams of coffee beans you want to add: ");
-        beans += scanner.nextInt();
-        scanner.nextLine(); // Consume the rest of the line including newline
-
-        System.out.println("Write how many disposable cups you want to add: ");
-        cups += scanner.nextInt();
-        scanner.nextLine(); // Consume the rest of the line including newline
-    }
-
-    private static void handleTake() {
-        System.out.printf("I gave you $%d\n\n", cash);
-        cash = 0;
-    }
-
-    private static void printStatus() {
-        System.out.printf("""
-                                
-                The coffee machine has:
-                %d ml of water
-                %d ml of milk
-                %d g of coffee beans
-                %d disposable cups
-                $%d of money
-                                
-                """, water, milk, beans, cups, cash);
-    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
