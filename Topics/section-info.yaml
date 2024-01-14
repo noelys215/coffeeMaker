@@ -4,3 +4,4 @@ content:
   - Initializing new instances. Constructor
   - Static members
   - Iterating over arrays
+  - Combining constants with enum
