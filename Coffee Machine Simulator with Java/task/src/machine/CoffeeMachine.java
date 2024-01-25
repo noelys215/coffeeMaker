@@ -92,9 +92,8 @@ public class CoffeeMachine {
         String option = scanner.next();
         scanner.nextLine(); // Consume the rest of the line including newline
 
-        if ("back".equals(option)) {
-            return; // Go back to the main menu
-        }
+        if ("back".equals(option)) return; // Go back to the main menu
+
         int choice = Integer.parseInt(option);
         switch (choice) {
             case 1 -> makeCoffee(250, 0, 16, 4);
