@@ -12,6 +12,7 @@ public class CoffeeMachine {
 
     public static void main(String[] args) {
         coffeeMaker();
+        checkInventory();
     }
 
     public static void makeCoffee() {
