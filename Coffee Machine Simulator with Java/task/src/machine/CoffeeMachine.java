@@ -11,7 +11,7 @@ public class CoffeeMachine {
     static int cash = 550;
 
     public static void main(String[] args) {
-        coffeeMaker();
+//        coffeeMaker();
     }
 
     public static void makeCoffee() {
